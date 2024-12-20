@@ -17,6 +17,7 @@ saveTaskBtn.addEventListener('click', () => {
     const name = document.getElementById('taskName').value;
     const date = document.getElementById('taskDate').value;
     const priority = document.getElementById('taskPriority').value;
+    const desc = document.getElementById("taskDesc").value;
 
     if (!name || !date || !priority) {
         alert('Bitte alle Felder ausfüllen!');
@@ -27,7 +28,8 @@ saveTaskBtn.addEventListener('click', () => {
     const task = {
         name: name,
         date: date,
-        priority: priority
+        priority: priority,
+        desc: desc
     };
 
     // Aufgabe zur Liste hinzufügen
@@ -48,7 +50,7 @@ function displayTasks(filteredTasks = tasks) {
     taskList.innerHTML = ''; // Löscht die Liste, bevor neue Aufgaben angezeigt werden
     filteredTasks.forEach(task => {
         const taskItem = document.createElement('div');
-        taskItem.innerHTML = `<strong>${task.name}</strong> - ${task.date} (${task.priority})`;
+        taskItem.innerHTML = `<strong>${task.name}</strong> - ${task.date} (${task.priority}) (${task.desc})`;
         taskList.appendChild(taskItem);
     });
 }
