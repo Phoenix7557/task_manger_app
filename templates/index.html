@@ -5,9 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    
 </head>
 <body>
-    <h1>lets a go!</h1>
+    <h1>Task Manager App</h1>
+    <button id="newTaskBtn" class="newTaskBtn"> Neue Aufgabe hinzufügen</button>
+    <div id="newTaskWd" style="display: none; border: 1px solid black; padding: 10px;">
+        <label for="taskName">Aufgabe:</label>
+        <input type="text" id="taskName" placeholder="Bitte gib den Namen der Aufgabe ein">
+        <br> 
+        <label for="taskDate">Datum:</label>
+        <input type="date" id="taskDate">
+        <br>
+        <label for="taskPriority">Priorität:</label>
+        <select id="taskPriority">
+            <option value="low">Niedrig</option>
+            <option value="medium">Mittel</option>
+            <option value="high">Hoch</option>
+        </select>
+        <br>
+        <button id="saveTaskBtn">Speichern</button>
+    </div>
+
+    <div id="taskList"></div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
+
 </html>
