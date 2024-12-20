@@ -54,8 +54,8 @@ function displayTasks(filteredTasks = tasks) {
 }
 
 // Suchleiste filtern
-document.getElementById('searchInput').addEventListener('input', (event) => {
-    const searchTerm = event.target.value.toLowerCase(); // Kleinbuchstaben für die Suche
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase(); // Kleinbuchstaben für die Suche
     const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchTerm)); // Filtert Aufgaben
     displayTasks(filteredTasks); // Zeigt gefilterte Aufgaben an
 });
