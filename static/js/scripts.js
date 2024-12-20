@@ -34,9 +34,7 @@ saveTaskBtn.addEventListener('click', () => {
     tasks.push(task);
 
     // Aufgabe zur HTML-Liste hinzufügen
-    const taskItem = document.createElement('div');
-    taskItem.innerHTML = `<strong>${name}</strong> - ${date} (${priority})`;
-    taskList.appendChild(taskItem);
+    displayTasks();
 
     // Formular zurücksetzen und verstecken
     document.getElementById('taskName').value = '';      // Leert das Namensfeld
@@ -45,5 +43,19 @@ saveTaskBtn.addEventListener('click', () => {
     document.getElementById('newTaskWd').style.display = 'none'; // Versteckt das Formular
 });
 
-// Optional: Alle Aufgaben in der Konsole anzeigen
-console.log(tasks);
+// Aufgaben anzeigen
+function displayTasks(filteredTasks = tasks) {
+    taskList.innerHTML = ''; // Löscht die Liste, bevor neue Aufgaben angezeigt werden
+    filteredTasks.forEach(task => {
+        const taskItem = document.createElement('div');
+        taskItem.innerHTML = `<strong>${task.name}</strong> - ${task.date} (${task.priority})`;
+        taskList.appendChild(taskItem);
+    });
+}
+
+// Suchleiste filtern
+document.getElementById('searchInput').addEventListener('input', (event) => {
+    const searchTerm = event.target.value.toLowerCase(); // Kleinbuchstaben für die Suche
+    const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchTerm)); // Filtert Aufgaben
+    displayTasks(filteredTasks); // Zeigt gefilterte Aufgaben an
+});
