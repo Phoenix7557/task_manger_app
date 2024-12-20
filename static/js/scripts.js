@@ -45,15 +45,25 @@ saveTaskBtn.addEventListener('click', () => {
     document.getElementById('newTaskWd').style.display = 'none'; // Versteckt das Formular
 });
 
-// Aufgaben anzeigen
+// Funktion zum Löschen einer Aufgabe
+function deleteTask(taskIndex) {
+    tasks.splice(taskIndex, 1); // Entfernt die Aufgabe aus dem Array
+    displayTasks(); // Zeigt die aktualisierte Liste an
+}
+
+// Neue Aufgabe zur Liste hinzufügen
 function displayTasks(filteredTasks = tasks) {
     taskList.innerHTML = ''; // Löscht die Liste, bevor neue Aufgaben angezeigt werden
-    filteredTasks.forEach(task => {
+    filteredTasks.forEach((task, index) => {
         const taskItem = document.createElement('div');
-        taskItem.innerHTML = `<strong>${task.name}</strong> - ${task.date} (${task.priority}) (${task.desc})`;
+        taskItem.innerHTML = `
+            <strong>${task.name}</strong> - ${task.date} (${task.priority})
+            <button onclick="deleteTask(${index})">Löschen</button>
+        `;
         taskList.appendChild(taskItem);
     });
 }
+
 
 // Suchleiste filtern
 document.getElementById('searchBtn').addEventListener('click', () => {
