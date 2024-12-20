@@ -3,9 +3,12 @@ const newTaskWd= document.getElementById("newTaskWd")
 const saveTaskBtn = document.getElementById("saveTaskBtn")
 const taskList = document.getElementById("taskList")
 
-// Taskfenster öffnen
-newTaskBtn.addEventListener("click",() => {
-    console.log("pls kill me");
+// Array, das alle Aufgaben speichert
+let tasks = [];
+
+// Button: Taskfenster öffnen
+newTaskBtn.addEventListener("click", () => {
+    console.log("Task-Fenster wird geöffnet");
     newTaskWd.style.display = "block";
 });
 
@@ -20,18 +23,17 @@ saveTaskBtn.addEventListener('click', () => {
         return;
     }
 
-    // Neue Aufgabe als Objiekt speichern
+    // Neue Aufgabe als Objekt speichern
     const task = {
         name: name,
         date: date,
         priority: priority
-    }
+    };
 
-// Aufgabe zur liste hinzufügen
+    // Aufgabe zur Liste hinzufügen
+    tasks.push(task);
 
-    taskList.push(task);
-//Augaben zur HTML liste hinzufügen
-
+    // Aufgabe zur HTML-Liste hinzufügen
     const taskItem = document.createElement('div');
     taskItem.innerHTML = `<strong>${name}</strong> - ${date} (${priority})`;
     taskList.appendChild(taskItem);
@@ -42,3 +44,6 @@ saveTaskBtn.addEventListener('click', () => {
     document.getElementById('taskPriority').value = 'low'; // Setzt die Priorität auf 'low'
     document.getElementById('newTaskWd').style.display = 'none'; // Versteckt das Formular
 });
+
+// Optional: Alle Aufgaben in der Konsole anzeigen
+console.log(tasks);
